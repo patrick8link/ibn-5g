@@ -1,0 +1,88 @@
+Intent:
++--rw intent
+   +--rw userLabel           string
+   +--rw intentExpectation   [expectationId]
+   |  +--rw expectationId      string
+   |  +--rw expectationVerb?   enumeration (DELIVER, ENSURE)
+   |  +--rw expectationObjects* [objectType]
+   |  |  +--rw objectType enumeration (RAN_Subnetwork, Service_Support, ...)
+   |  |  +--rw objectInstance string (Distinguish Name)
+   |  |  +--rw objectContexts
+   |  |  |  +--rw EdgeIdenfiticationIdContext
+   |  |  |  |  +--rw contextAttribute   enumeration (edgeIdentificationId)
+   |  |  |  |  +--rw contextCondition   enumeration (Is_equal_than       )
+   |  |  |  |  +--rw contextValueRange* string
+   |  |  |  +--rw EdgeIdenfiticationLocContext
+   |  |  |  |  +--rw contextAttribute   enumeration (edgeIdentificationTarget)
+   |  |  |  |  +--rw contextCondition   enumeration (Is_equal_than           )
+   |  |  |  |  +--rw contextValueRange* string
+   |  |  |  +--rw CoverageAreaTAContext
+   |  |  |  |  +--rw contextAttribute   enumeration (coverageAreaTA     )
+   |  |  |  |  +--rw contextCondition   enumeration (Is_within_the_range)
+   |  |  |  |  +--rw contextValueRange* integer
+   |  +--rw expectationTargets
+   |  |  +--rw DlThptPerUETarget
+   |  |  |  +--rw targetName       enumeration (DlThptPerUE)
+   |  |  |  +--rw targetCondition  enumeration (Is_greater_than)
+   |  |  |  +--rw targetValueRange
+   |  |  |  |  +--rw ServAttrCom
+   |  |  |  |  |  +--rw Category enumeration (CHARACTER, SCALABILITY)
+   |  |  |  |  |  +--rw Tagging  enumeration (PERFORMANCE, FUNCTION, OPERATION)
+   |  |  |  |  |  +--rw Exposure enumeration (API, KPI)
+   |  |  |  |  +--rw guaThpt  float
+   |  |  |  |  +--rw maxThpt  float
+   |  |  +--rw UlThptPerUETarget
+   |  |  |  +--rw targetName       enumeration (UlThptPerUE)
+   |  |  |  +--rw targetCondition  enumeration (Is_greater_than)
+   |  |  |  +--rw targetValueRange
+   |  |  |  |  +--rw ServAttrCom
+   |  |  |  |  |  +--rw Category enumeration (CHARACTER, SCALABILITY)
+   |  |  |  |  |  +--rw Tagging  enumeration (PERFORMANCE, FUNCTION, OPERATION)
+   |  |  |  |  |  +--rw Exposure enumeration (API, KPI)
+   |  |  |  |  +--rw guaThpt  float
+   |  |  |  |  +--rw maxThpt  float
+   |  |  +--rw DLLatencyTarget
+   |  |  |  +--rw targetName       enumeration (DlLatency)
+   |  |  |  +--rw targetCondition  enumeration (Is_less_than)
+   |  |  |  +--rw targetValueRange int
+   |  |  +--rw ULLatencyTarget
+   |  |  |  +--rw targetName       enumeration (UlLatency)
+   |  |  |  +--rw targetCondition  enumeration (Is_less_than)
+   |  |  |  +--rw targetValueRange int
+   |  |  +--rw MaxNumberofUEsTarget
+   |  |  |  +--rw targetName       enumeration (maxNumberofUEs)
+   |  |  |  +--rw targetCondition  enumeration (Is_less_than)
+   |  |  |  +--rw targetValueRange int
+   |  |  +--rw ActivityFactorTarget
+   |  |  |  +--rw targetName       enumeration (activityFactor)
+   |  |  |  +--rw targetCondition  enumeration (Is_less_than)
+   |  |  |  +--rw targetValueRange int
+   |  |  +--rw UESpeedTarget
+   |  |  |  +--rw targetName       enumeration (uESpeed)
+   |  |  |  +--rw targetCondition  enumeration (Is_less_than)
+   |  |  |  +--rw targetValueRange int
+   |  +--rw expectationContexts
+   |  |  +--rw ServiceStartTimeContext
+   |  |  |  +--rw contextAttribute  enumeration (ServiceStartTime)
+   |  |  |  +--rw contextCondition  enumeration (Is_equal_than   )
+   |  |  |  +--rw contextValueRange string
+   |  |  +--rw ServiceEndTimeContext
+   |  |  |  +--rw contextAttribute  enumeration (ServiceEndTime)
+   |  |  |  +--rw contextCondition  enumeration (Is_equal_than )
+   |  |  |  +--rw contextValueRange string
+   |  |  +--rw UEMobilityLevelContext
+   |  |  |  +--rw contextAttribute  enumeration (UEMobilityLevel                                      )
+   |  |  |  +--rw contextCondition  enumeration (Is_within_the_range                                  )
+   |  |  |  +--rw contextValueRange enumeration (STATIONARY,NOMADIC,RESTRICTED MOBILITY,FULLY MOBILITY)
+   |  |  +--rw ResourceSharingLevelContext
+   |  |  |  +--rw contextAttribute  enumeration (ResourceSharingLevel)
+   |  |  |  +--rw contextCondition  enumeration (Is_within_the_range )
+   |  |  |  +--rw contextValueRange enumeration (SHARED,NON-SHARED   )
+   +--rw intentContext* [contextAttribute]
+   |  +--rw contextAttribute   string
+   |  +--rw contextCondition   enumeration (Is_equal_to, Is_less_than, Is_greater_than, Is_within_the_range)
+   |  +--rw contextValueRange* number
+   +--r  intentFulfilmentInfo
+      +--r  fulfilStatus enumeration (FULFILLED, NOT_FULFILLED)
+      +--r  notFulfilledState enumeration (ACKNOWLEDGED, COMPLIANT, DEGRADED, SUSPENDED, TERMINATED, FULFILMENTFAILED)
+      +--r  notFulfilledReasons string
